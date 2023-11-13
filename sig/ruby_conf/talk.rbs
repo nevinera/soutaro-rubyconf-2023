@@ -41,7 +41,7 @@ module RubyConf
     #
     # The block converts name of speaker to Speaker object
     #
-    def self.from_json: (json) { (String) -> Speaker } -> Talk
+    def self.from_json: (json) { (String) -> Speaker? } -> Talk
 
     # The range of start and end time
     #

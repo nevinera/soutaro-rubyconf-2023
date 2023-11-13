@@ -12,7 +12,7 @@ module RubyConf
     end
 
     def self.from_json(json)
-      speakers = json[:speakers].map {|name| yield name }
+      speakers = json[:speakers].map {|name| yield name }.compact
       starts_at = json[:starts_at]
 
       starts_at = Time.iso8601(starts_at)

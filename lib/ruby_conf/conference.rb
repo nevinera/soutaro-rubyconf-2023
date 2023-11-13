@@ -39,7 +39,7 @@ module RubyConf
     end
 
     def next_talk(of:, in_room:)
-      talks_in_the_room = talks.select {|talk| talk.room == in_room }
+      talks.select {|talk| talk.room == in_room }
       following_talks = talks.select {|talk| of.ends_at <= talk.starts_at }
       following_talks.min_by {|talk| talk.starts_at }
     end
