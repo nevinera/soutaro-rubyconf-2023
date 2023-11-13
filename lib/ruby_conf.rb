@@ -9,6 +9,9 @@ require "ruby_conf/link"
 require "ruby_conf/workshop"
 
 module RubyConf
+  Error = Class.new(StandardError)
+  RecordNotFound = Class.new(Error)
+
   def self.room(source)
     table = {
       :BALLROOM_A => :BALLROOM_A,

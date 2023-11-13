@@ -11,7 +11,7 @@ module RubyConf
       @stdout = $stdout
     end
 
-    KNOWN_COMMANDS = %w(help speakers talks)
+    KNOWN_COMMANDS = %w(help speakers talks workshops)
 
     DATA_PATH = Pathname(
       __dir__ #: String
@@ -105,6 +105,26 @@ module RubyConf
           end
           stdout.puts
         end
+      end
+
+      0
+    end
+
+    def run_workshops
+      query = argv.shift
+
+      conference = Conference.load(DATA_PATH)
+      conference.workshops.each do |workshop|
+        next unless query.nil? || workshop.match?(query)
+        stdout.puts <<~OUTPUT
+          #{workshop.title}
+
+            Starting at #{workshop.starts_at}
+            Speaker: #{workshop.speaker}
+            Capacity: #{workshop.capacity}
+
+            #{workshop.description.split("\n").map { |line| '      ' + line }.join("\n")}
+        OUTPUT
       end
 
       0

@@ -4,15 +4,17 @@ module RubyConf
   # ```ruby
   # conference = RubyConf::Conference.load(Pathname("data.yaml"))
   #
-  # conference.talks    # => All of the talks
-  # conference.speakers # => All of the speakers
+  # conference.talks     # => All of the talks
+  # conference.workshops # => All of the workshops
+  # conference.speakers  # => All of the speakers
   # ```
   #
   class Conference
     # The serialization format
     type json = {
       speakers: Array[Speaker::json],
-      talks: Array[Talk::json]
+      talks: Array[Talk::json],
+      workshops: Array[Workshop::json]
     }
 
     # Array of all talks of the conference
@@ -20,6 +22,9 @@ module RubyConf
 
     # Array of all speakers of the conference
     attr_reader speakers: Array[Speaker]
+
+    # Array of all workshops of the conference
+    attr_reader workshops: Array[Workshop]
 
     def initialize: () -> void
 

@@ -1,10 +1,11 @@
 module RubyConf
   class Conference
-    attr_reader :speakers, :talks
+    attr_reader :speakers, :talks, :workshops
 
     def initialize()
       @speakers = []
       @talks = []
+      @workshops = []
     end
 
     def self.load(path)
@@ -25,6 +26,10 @@ module RubyConf
 
       content[:talks].each do |json|
         talks << Talk.from_json(json) {|name| find_speaker(name) }
+      end
+
+      content[:workshops].each do |json|
+        workshops << Workshop.from_json(json) { |name| find_speaker(name) }
       end
     end
 
