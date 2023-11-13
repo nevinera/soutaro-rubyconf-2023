@@ -120,7 +120,7 @@ module RubyConf
           #{workshop.title}
 
             Starting at #{workshop.starts_at}
-            Speaker: #{workshop.speaker}
+            Speaker: #{workshop.speaker.name}
             Capacity: #{workshop.capacity}
 
             #{workshop.description.split("\n").map { |line| '      ' + line }.join("\n")}
